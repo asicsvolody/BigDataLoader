@@ -24,9 +24,9 @@
     </build>
     <modules>
         <module>WebService</module>
-        <module>Commons</module>
+        <module>commons</module>
         <module>DeleteFromTable</module>
-        <module>SqoopImportToDir</module>
+        <module>SqoopMysqlToDir</module>
         <module>LoadToHiveFromDirs</module>
     </modules>
 
