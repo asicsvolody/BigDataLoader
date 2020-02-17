@@ -13,7 +13,7 @@ import java.util.List;
  */
 
 @Service
-public class WtiesorkflowService {
+public class WorkflowService {
 
     private WorkflowRepository workflowRepository;
 
