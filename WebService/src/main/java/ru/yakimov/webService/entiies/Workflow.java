@@ -1,5 +1,7 @@
 package ru.yakimov.webService.entiies;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -10,7 +12,7 @@ import java.util.Date;
  * E-mail: yakimovvn@bk.ru
  */
 @Entity
-@javax.persistence.Table(name = "WORKFLOW")
+@Table(name = "WORKFLOW")
 public class Workflow implements Serializable {
 
     @Id
@@ -24,8 +26,9 @@ public class Workflow implements Serializable {
     @Column(name = "TITLE")
     private String title;
 
-    @Column(name ="TYPE")
-    private String type;
+    @OneToOne
+    @JoinColumn(name ="TYPE_ID", referencedColumnName="id", nullable = false)
+    private WFType type;
 
     @Column(name = "CREATE_DATE")
     @Temporal(TemporalType.DATE)
@@ -35,9 +38,8 @@ public class Workflow implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date lastRunDate;
 
-    @OneToOne
-    @JoinColumn(name = "WF_CONFIG_ID")
-    private DBTable config;
+    @OneToOne(mappedBy = "workflow", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private WFConfig wfConfig;
 
     public Long getId() {
         return id;
@@ -63,11 +65,11 @@ public class Workflow implements Serializable {
         this.title = title;
     }
 
-    public String getType() {
+    public WFType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(WFType type) {
         this.type = type;
     }
 
@@ -87,11 +89,12 @@ public class Workflow implements Serializable {
         this.lastRunDate = lastRunDate;
     }
 
-    public DBTable getConfig() {
-        return config;
+    public WFConfig getWfConfig() {
+        return wfConfig;
     }
 
-    public void setConfig(DBTable config) {
-        this.config = config;
+    public void setWfConfig(WFConfig wfConfig) {
+        this.wfConfig = wfConfig;
     }
+
 }

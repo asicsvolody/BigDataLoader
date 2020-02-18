@@ -1,6 +1,7 @@
 package ru.yakimov.webService.entiies;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by IntelliJ Idea.
@@ -10,7 +11,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "DIRECTORY_FROM")
-public class DirectoryFrom {
+public class DirectoryFrom implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +24,7 @@ public class DirectoryFrom {
     private String path;
 
     @ManyToOne
-    @JoinColumn(name = "WF_CONFIG_ID")
+    @JoinColumn(name = "WF_CONFIG_ID", referencedColumnName="id", nullable = false)
     private WFConfig wfConfig;
 
     public Long getId() {
@@ -57,4 +58,5 @@ public class DirectoryFrom {
     public void setWfConfig(WFConfig wfConfig) {
         this.wfConfig = wfConfig;
     }
+
 }

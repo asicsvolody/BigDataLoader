@@ -10,8 +10,8 @@ import java.io.Serializable;
  */
 
 @Entity
-@Table(name = "PARTITION_COLUMN")
-public class PartitionColumn implements Serializable {
+@Table(name = "TABLE_PRIMARY_KAY")
+public class TablePrimaryKay implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,15 +20,15 @@ public class PartitionColumn implements Serializable {
     @Column(name = "VERSION")
     private int version;
 
-    @Column(name = "COLUMN_NAME")
-    private String columnName;
+    @Column(name = "TITLE_PRIMARY_KAY")
+    private String titlePrimaryKay;
 
-    @Column(name = "COLUMN_TYPE")
+    @Column(name = "PRIMARY_KAY_TYPE")
     private String type;
 
     @ManyToOne
-    @JoinColumn(name = "WF_CONFIG_ID", referencedColumnName="id", nullable = false)
-    private  WFConfig wfConfig;
+    @JoinColumn(name = "TABLE_CONF_ID", referencedColumnName = "id", nullable = false)
+    private TableConf tableConf;
 
     public Long getId() {
         return id;
@@ -46,12 +46,12 @@ public class PartitionColumn implements Serializable {
         this.version = version;
     }
 
-    public String getColumnName() {
-        return columnName;
+    public String getTitlePrimaryKay() {
+        return titlePrimaryKay;
     }
 
-    public void setColumnName(String columnName) {
-        this.columnName = columnName;
+    public void setTitlePrimaryKay(String titlePrimaryKay) {
+        this.titlePrimaryKay = titlePrimaryKay;
     }
 
     public String getType() {
@@ -62,11 +62,11 @@ public class PartitionColumn implements Serializable {
         this.type = type;
     }
 
-    public WFConfig getWfConfig() {
-        return wfConfig;
+    public TableConf getTableConf() {
+        return tableConf;
     }
 
-    public void setWfConfig(WFConfig wfConfig) {
-        this.wfConfig = wfConfig;
+    public void setTableConf(TableConf tableConf) {
+        this.tableConf = tableConf;
     }
 }

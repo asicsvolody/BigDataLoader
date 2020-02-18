@@ -1,6 +1,7 @@
 package ru.yakimov.webService.services;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.yakimov.webService.dao.WorkflowRepository;
 import ru.yakimov.webService.entiies.Workflow;
 
@@ -13,6 +14,7 @@ import java.util.List;
  */
 
 @Service
+@Transactional
 public class WorkflowService {
 
     private WorkflowRepository workflowRepository;

@@ -1,10 +1,9 @@
 package ru.yakimov.webService.entiies;
 
-import com.sun.javafx.beans.IDProperty;
-import org.springframework.web.bind.annotation.ModelAttribute;
-
 import javax.persistence.*;
-import java.util.List;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by IntelliJ Idea.
@@ -13,8 +12,8 @@ import java.util.List;
  */
 
 @Entity
-@Table(name = "BD_TABLE")
-public class DBTable {
+@Table(name = "TABLE_CONF")
+public class TableConf implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,29 +22,29 @@ public class DBTable {
     @Column(name = "VERSION")
     private int version;
 
-    @Column(name = "HOST")
+    @Column(name = "TABLE_CONF_HOST")
     private String host;
 
-    @Column(name = "PORT")
+    @Column(name = "TABLE_CONF_PORT")
     private String port;
 
-    @Column(name = "USERNAME")
+    @Column(name = "TABLE_CONF_USERNAME")
     private String username;
 
-    @Column(name = "PASSWORD")
+    @Column(name = "TABLE_CONF_PASSWORD")
     private String password;
 
-    @Column(name = "SCHEMA")
+    @Column(name = "TABLE_CONF_SCHEMA")
     private String schema;
 
-    @Column(name = "TABLE")
+    @Column(name = "TABLE_CONF_TABLE")
     private String table;
 
-    @OneToMany(mappedBy = "PRIMARY_KAY", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private List<PrimaryKay> primaryKeys;
+    @OneToMany(mappedBy = "tableConf", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private Set<TablePrimaryKay> primaryKeys = new HashSet<>();
 
     @OneToOne
-    @JoinColumn(name = "WF_CONFIG_ID")
+    @JoinColumn(name = "WF_CONFIG_ID", referencedColumnName="id", nullable = false)
     private WFConfig wfConfig;
 
     public Long getId() {
@@ -112,11 +111,11 @@ public class DBTable {
         this.table = table;
     }
 
-    public List<PrimaryKay> getPrimaryKeys() {
+    public Set<TablePrimaryKay> getPrimaryKeys() {
         return primaryKeys;
     }
 
-    public void setPrimaryKeys(List<PrimaryKay> primaryKeys) {
+    public void setPrimaryKeys(Set<TablePrimaryKay> primaryKeys) {
         this.primaryKeys = primaryKeys;
     }
 
@@ -126,5 +125,9 @@ public class DBTable {
 
     public void setWfConfig(WFConfig wfConfig) {
         this.wfConfig = wfConfig;
+    }
+
+    public boolean addPrimaryKay(TablePrimaryKay tablePrimaryKay){
+        return this.primaryKeys.add(tablePrimaryKay);
     }
 }

@@ -1,7 +1,9 @@
 package ru.yakimov.webService.entiies;
 
 import javax.persistence.*;
-import java.util.List;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by IntelliJ Idea.
@@ -11,7 +13,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "WF_CONFIG")
-public class WFConfig {
+public class WFConfig implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,16 +22,22 @@ public class WFConfig {
     @Column(name = "VERSION")
     private int version;
 
-    @OneToMany(mappedBy = "DIRECTORY_FROM", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private List<DirectoryFrom> dirFrom;
+    @OneToMany(mappedBy = "wfConfig", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private Set<DirectoryFrom> dirFrom = new HashSet<>();
 
+    @Column(name = "DIR_TO")
     private String dirTo;
 
-    @OneToMany(mappedBy = "PARTITION_COLUMN", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private List<PartitionColumn> partitions;
+    @OneToMany(mappedBy = "wfConfig", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private Set<PartitionColumn> partitions = new HashSet<>();
 
-    @OneToOne(mappedBy = "PARTITION_COLUMN", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private DBTable DBTable;
+    @OneToOne(mappedBy = "wfConfig", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private TableConf TableConf;
+
+    @OneToOne
+    @JoinColumn(name = "WORKFLOW_ID", referencedColumnName="id", nullable = false)
+    private Workflow workflow;
+
 
     public Long getId() {
         return id;
@@ -47,11 +55,11 @@ public class WFConfig {
         this.version = version;
     }
 
-    public List<DirectoryFrom> getDirFrom() {
+    public Set<DirectoryFrom> getDirFrom() {
         return dirFrom;
     }
 
-    public void setDirFrom(List<DirectoryFrom> dirFrom) {
+    public void setDirFrom(Set<DirectoryFrom> dirFrom) {
         this.dirFrom = dirFrom;
     }
 
@@ -63,19 +71,37 @@ public class WFConfig {
         this.dirTo = dirTo;
     }
 
-    public List<PartitionColumn> getPartitions() {
+    public Set<PartitionColumn> getPartitions() {
         return partitions;
     }
 
-    public void setPartitions(List<PartitionColumn> partitions) {
+    public void setPartitions(Set<PartitionColumn> partitions) {
         this.partitions = partitions;
     }
 
-    public ru.yakimov.webService.entiies.DBTable getDBTable() {
-        return DBTable;
+    public ru.yakimov.webService.entiies.TableConf getTableConf() {
+        return TableConf;
     }
 
-    public void setDBTable(ru.yakimov.webService.entiies.DBTable DBTable) {
-        this.DBTable = DBTable;
+    public void setTableConf(ru.yakimov.webService.entiies.TableConf tableConf) {
+        TableConf = tableConf;
     }
+
+    public Workflow getWorkflow() {
+        return workflow;
+    }
+
+    public void setWorkflow(Workflow workflow) {
+        this.workflow = workflow;
+    }
+
+    public boolean addPartitionColumn(PartitionColumn partitionColumn){
+        return this.partitions.add(partitionColumn);
+    }
+
+    public boolean addDirectoryFrom(DirectoryFrom directoryFrom){
+        return this.dirFrom.add(directoryFrom);
+    }
+
+
 }
