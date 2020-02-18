@@ -57,7 +57,10 @@ public class WorkflowServiceTest {
         directoryFrom.setPath("/tmp/tmp");
 
         wfConfig.addDirectoryFrom(directoryFrom);
-//        directoryFrom.setWfConfig(wfConfig);
+
+//        !!!
+        directoryFrom.setWfConfig(wfConfig);
+
         wfConfig.setDirTo("/path/path");
 
         PartitionColumn partitionColumn = new PartitionColumn();
@@ -66,7 +69,8 @@ public class WorkflowServiceTest {
 
         wfConfig.addPartitionColumn(partitionColumn);
 
-//        partitionColumn.setWfConfig(wfConfig);
+//        !!!
+        partitionColumn.setWfConfig(wfConfig);
 
         TableConf tableConf = new TableConf();
         tableConf.setHost("localhost");
@@ -78,11 +82,18 @@ public class WorkflowServiceTest {
         TablePrimaryKay tablePrimaryKay = new TablePrimaryKay();
         tablePrimaryKay.setTitlePrimaryKay("user_id");
         tablePrimaryKay.setType("int");
+//        !!!
+        tablePrimaryKay.setTableConf(tableConf);
         tableConf.addPrimaryKay(tablePrimaryKay);
 
 
         wfConfig.setTableConf(tableConf);
+//        !!!
+        tableConf.setWfConfig(wfConfig);
+
         workflow.setWfConfig(wfConfig);
+//        !!!
+        wfConfig.setWorkflow(workflow);
 
         Workflow savedWF = workflowService.save(workflow);
 
