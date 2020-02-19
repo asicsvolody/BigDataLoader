@@ -17,8 +17,10 @@
     <title>Big Data Loader</title>
 </head>
 <body>
-<div th:replace="~{fragments/header :: header}">Header</div>
-<div class="container">
+<header>
+    <nav th:replace="~{fragments/header :: header}">Header</nav>
+</header>
+<main role="main" class="container">
     <div class="text-left" th:if="${not #lists.isEmpty(workflowlist)}">
 
         <h1>Workflows</h1>
@@ -49,10 +51,11 @@
                 </tr>
             </table>
         </div>
-
-        <div th:insert="~{fragments/footer :: footer}">&copy; 2020 Vladimir Yakimov</div>
     </div>
-</div>
+</main>
+<footer>
+    <div th:insert="~{fragments/footer :: footer}">&copy; 2020 Vladimir Yakimov</div>
+</footer>
 
 </body>
 </html>

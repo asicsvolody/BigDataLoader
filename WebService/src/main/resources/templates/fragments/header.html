@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" href="images/favicon.ico">
+    <link rel="icon" href="images/favicon.ico" th:href="@{images/favicon.ico}">
     <link rel="stylesheet" href="../../public/css/bootstrap.min.css"
           th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}">
     <link rel="stylesheet" href="css/general.css">
@@ -20,7 +20,9 @@
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-static-top navbar-dark bg-primary" th:fragment="header">
         <div class="container">
-            <a class="navbar-brand" href="#" th:href="@{/}">BIG DATA LOADER</a>
+            <a class="navbar-brand" href="#" th:href="@{/}">
+                <img src="../static/images/logo.jpg" th:src="@{/images/logo.jpg}" alt="Big data loader" class="img-thumbnail">
+            </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -34,13 +36,15 @@
                         <a class="nav-link" href="/workflows" th:href="@{/workflows}">Workflows</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="/workflows/new" th:href="@{/workflows/new}">New workflow</a>
+                        <a class="nav-link" href="/workflows/new" th:href="@{/workflows/new}">
+                            <span class="badge badge-warning">+ New workflow</span>
+                        </a>
                     </li>
                 </ul>
                 <ul class="navbar-nav my-2 my-lg-0">
                     <li class="nav-item active" th:if="${#authorization.expression('!isAuthenticated()')}">
 
-                        <form class="form-inline" th:action="@{/login}" method="post">
+                        <form class="form-inline my-lg-0" th:action="@{/login}" method="post">
                             <div class="form-group mb-2">
                                 <label for="staticEmail2" class="sr-only">User Name :</label>
                                 <input type="text" name="username" class="form-control" id="staticEmail2" value="username">

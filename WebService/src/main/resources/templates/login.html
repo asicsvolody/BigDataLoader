@@ -17,8 +17,10 @@
     <title>Big Data Loader</title>
 </head>
 <body>
-<div th:replace="~{fragments/header :: header}">Header</div>
-<div class="container">
+<header>
+    <nav th:replace="~{fragments/header :: header}">Header</nav>
+</header>
+<main role="main" class="container">
 
     <div th:if="${param.error}">
         Invalid username and password.
@@ -44,7 +46,9 @@
         <button type="submit" class="btn btn-primary">Sign In</button>
     </form>
 
+</main>
+<footer>
     <div th:insert="~{fragments/footer :: footer}">&copy; 2020 Vladimir Yakimov</div>
-</div>
+</footer>
 </body>
 </html>

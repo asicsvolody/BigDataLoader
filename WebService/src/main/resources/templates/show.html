@@ -18,8 +18,10 @@
 </head>
 
 <body>
-<div th:replace="~{fragments/header :: header}">Header</div>
-<div class="container">
+<header>
+    <nav th:replace="~{fragments/header :: header}">Header</nav>
+</header>
+<main role="main" class="container">
 
     <h1>Singer Details</h1>
 
@@ -50,8 +52,10 @@
             </div>
         </form>
     </div>
-    <div th:insert="~{fragments/footer :: footer}">&copy; 2017 2020 Vladimir Yakimov</div>
-</div>
+</main>
+<footer>
+    <div th:insert="~{fragments/footer :: footer}">&copy; 2020 Vladimir Yakimov</div>
+</footer>
 
 </body>
 </html>
