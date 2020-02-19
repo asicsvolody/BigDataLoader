@@ -24,9 +24,9 @@
     </build>
     <modules>
         <module>WebService</module>
-        <module>Commons</module>
+        <module>commons</module>
         <module>DeleteFromTable</module>
-        <module>SqoopImportToDir</module>
+        <module>SqoopMysqlToDir</module>
         <module>LoadToHiveFromDirs</module>
     </modules>
 
@@ -50,12 +50,14 @@
             <version>8.0.17</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/junit/junit -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.11</version>
+            <version>4.13</version>
             <scope>test</scope>
         </dependency>
+
 
 
     </dependencies>

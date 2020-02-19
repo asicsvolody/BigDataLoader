@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="BIG_DATA_WEB@localhost" uuid="f315ba78-0c7e-4533-b41d-97fad6c94921">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/BIG_DATA_WEB?serverTimezone=UTC</jdbc-url>
+    </data-source>
+  </component>
+</project>
