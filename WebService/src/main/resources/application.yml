@@ -5,8 +5,8 @@ spring:
 #  # Security configuration
   security:
     user:
-      name: user
-      password: user
+      name: admin
+      password: admin
   # Database
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver

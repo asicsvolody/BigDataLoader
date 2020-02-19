@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" media="screen" href="../../public/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}">
+    <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/1.12.9/dist/esm/popper.min.js}"></script>
+    <script th:href="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.min.js}"></script>
+    <title>Big Data Loader</title>
+</head>
+<body>
+<div class="container">
+    <div th:fragment="header">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="#" th:href="@{/}">BIG DATA LOADER</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/index" th:href="@{/}" >Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/workflows" th:href="@{/workflows}">Workflows</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/workflows/new" th:href="@{/workflows/new}">New workflow</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav my-2 my-lg-0">
+                    <li class="nav-item active" th:if="${#authorization.expression('!isAuthenticated()')}">
+                        <a class="nav-link" href="/login" th:href="@{/login}">
+                            Log in
+                        </a>
+                    </li>
+                    <li class="nav-item active" th:if="${#authorization.expression('isAuthenticated()')}">
+                        <a class="nav-link" href="/logout" th:href="@{#}" onclick="$('#form').submit();">
+                            &nbspLogout
+                        </a>
+                        <form style="visibility: hidden" id="form" method="post" action="#" th:action="@{/logout}"></form>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+</body>
+</html>

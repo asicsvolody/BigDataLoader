@@ -6,11 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="DeleteFromTable" />
-        <module name="LoadToHiveFromDirs" />
-        <module name="commons" />
         <module name="SqoopMysqlToDir" />
+        <module name="commons" />
+        <module name="SqoopImportToDir" />
         <module name="WebService" />
+        <module name="LoadToHiveFromDirs" />
+        <module name="DeleteFromTable" />
       </profile>
     </annotationProcessing>
   </component>

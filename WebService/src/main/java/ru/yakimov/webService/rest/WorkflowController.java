@@ -12,7 +12,7 @@ import ru.yakimov.webService.services.WorkflowService;
  */
 
 @Controller
-@RequestMapping("/workflow")
+@RequestMapping(value = "/workflows")
 public class WorkflowController {
 
     private WorkflowService workflowService;

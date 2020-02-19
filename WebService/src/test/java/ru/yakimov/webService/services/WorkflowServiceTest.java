@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.yakimov.webService.entiies.*;
 import ru.yakimov.webService.utils.DateFormatter;
 
+import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
 import java.text.ParseException;
 import java.util.Locale;
@@ -109,14 +110,34 @@ public class WorkflowServiceTest {
 
         assertEquals(++workflowCount, workflowService.count());
 
-//        assertNotNull(savedWF.getWfConfig().getTableConf().);
 
+    }
 
+    @Test
+    @Transactional
+    public void update() throws ParseException {
+        Workflow wf = workflowService.getAll().get(0);
+        long id = wf.getId();
+        String[] dataArr = new String[]{
+                "New test title",
+                "dir to",
+                "new Partition column",
+                "new user name"
+        };
 
+        wf.setTitle(dataArr[0]);
+        wf.getWfConfig().setDirTo(dataArr[1]);
+        wf.getWfConfig().getPartitions().iterator().next().setColumnName(dataArr[2]);
+        wf.getWfConfig().getTableConf().setUsername(dataArr[3]);
+        workflowService.save(wf);
+        wf = workflowService.getById(id);
 
-
-
-
+        assertArrayEquals(dataArr, new String[]{
+                wf.getTitle(),
+                wf.getWfConfig().getDirTo(),
+                wf.getWfConfig().getPartitions().iterator().next().getColumnName(),
+                wf.getWfConfig().getTableConf().getUsername()
+        });
 
 
     }
