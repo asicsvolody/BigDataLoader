@@ -1,7 +1,8 @@
 package ru.yakimov.webService.services;
 
 import org.springframework.stereotype.Service;
-import ru.yakimov.webService.dao.WFTypeRepository;
+import org.springframework.transaction.annotation.Transactional;
+import ru.yakimov.webService.dao.WFTypeDao;
 import ru.yakimov.webService.entiies.WFType;
 
 /**
@@ -11,14 +12,16 @@ import ru.yakimov.webService.entiies.WFType;
  */
 
 @Service
-public class WFTypeService {
-    private WFTypeRepository repository;
+@Transactional
+public class WFTypeService implements IWFTypeService{
+    private WFTypeDao wfTypeDao;
 
-    public WFTypeService(WFTypeRepository repository) {
-        this.repository = repository;
+    public WFTypeService(WFTypeDao wfTypeDao) {
+        this.wfTypeDao = wfTypeDao;
     }
 
+    @Override
     public WFType save(WFType type){
-        return this.repository.save(type);
+        return this.wfTypeDao.save(type);
     }
 }

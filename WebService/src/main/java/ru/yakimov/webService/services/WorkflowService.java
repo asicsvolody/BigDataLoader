@@ -2,7 +2,7 @@ package ru.yakimov.webService.services;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.yakimov.webService.dao.WorkflowRepository;
+import ru.yakimov.webService.dao.WorkflowDao;
 import ru.yakimov.webService.entiies.Workflow;
 
 import java.util.List;
@@ -15,36 +15,42 @@ import java.util.List;
 
 @Service
 @Transactional
-public class WorkflowService {
+public class WorkflowService implements IWorkflowService {
 
-    private WorkflowRepository workflowRepository;
+    private WorkflowDao workflowDao;
 
-    public WorkflowService(WorkflowRepository workflowRepository) {
-        this.workflowRepository = workflowRepository;
+    public WorkflowService(WorkflowDao workflowDao) {
+        this.workflowDao = workflowDao;
     }
 
+    @Override
     public Workflow getById(Long id){
-        return workflowRepository.getOne(id);
+        return workflowDao.getOne(id);
     }
 
+    @Override
     public List<Workflow> getAll(){
-        return workflowRepository.findAll();
+        return workflowDao.findAll();
     }
 
+    @Override
     public Workflow save(Workflow workflow){
-        return workflowRepository.save(workflow);
+        return workflowDao.save(workflow);
     }
 
+    @Override
     public void deleteById(Long id){
-        workflowRepository.deleteById(id);
+        workflowDao.deleteById(id);
     }
 
+    @Override
     public void delete(Workflow workflow){
-        workflowRepository.delete(workflow);
+        workflowDao.delete(workflow);
     }
 
+    @Override
     public long count(){
-        return workflowRepository.count();
+        return workflowDao.count();
     }
 
 

@@ -9,5 +9,5 @@ import ru.yakimov.webService.entiies.WFType;
  * E-mail: yakimovvn@bk.ru
  */
 
-public interface WFTypeRepository extends JpaRepository<WFType, Long> {
+public interface WFTypeDao extends JpaRepository<WFType, Long> {
 }

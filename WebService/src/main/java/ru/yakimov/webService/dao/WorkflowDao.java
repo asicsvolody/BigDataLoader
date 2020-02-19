@@ -9,5 +9,5 @@ package ru.yakimov.webService.dao;
 import org.springframework.data.jpa.repository.JpaRepository;
 import ru.yakimov.webService.entiies.Workflow;
 
-public interface WorkflowRepository extends JpaRepository<Workflow, Long> {
+public interface WorkflowDao extends JpaRepository<Workflow, Long> {
 }
