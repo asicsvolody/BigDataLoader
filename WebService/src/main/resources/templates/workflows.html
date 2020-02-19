@@ -3,8 +3,10 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="images/favicon.ico">
     <link rel="stylesheet" href="../../public/css/bootstrap.min.css"
           th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="css/general.css">
 
     <script src="http://cdn.jsdelivr.net/webjars/jquery/3.2.1/jquery.min.js"
             th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
@@ -38,7 +40,7 @@
                     <td th:text="${workflow.title}">Workflow title</td>
                     <td th:text="${workflow.getType().title}">Workflow type</td>
                     <td th:text="${workflow.createDate}">Creation date</td>
-                    <td th:text="${workflow.lastRunDate}">Last ru date</td>
+                    <td th:text="${workflow.lastRunDate}">Last run date</td>
                     <td><a th:href="${ '/workflows/log/' + workflow.id}">Log</a></td>
                     <td><a th:href="${ '/workflows/' + workflow.id}">View</a></td>
                     <td><a th:href="${'/workflows/edit/' + workflow.id}">Edit</a></td>

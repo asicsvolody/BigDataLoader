@@ -3,8 +3,10 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="images/favicon.ico">
     <link rel="stylesheet" href="../../public/css/bootstrap.min.css"
           th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="css/general.css">
 
     <script src="http://cdn.jsdelivr.net/webjars/jquery/3.2.1/jquery.min.js"
             th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
@@ -15,14 +17,18 @@
     <title>Big Data Loader</title>
 </head>
 <body>
-<nav th:replace="~{fragments/header :: header}">Header</nav>
-<div class="container">
+<header>
+    <nav th:replace="~{fragments/header :: header}">Header</nav>
+</header>
+<main role="main" class="container">
     <h1>Big data loader</h1>
 
     <div class="lead">
         This is project for creation update and run workflows.
     </div>
-</div>
-<div th:insert="~{fragments/footer :: footer}">&copy; 2020 Vladimir Yakimov</div>
+</main>
+<footer>
+    <div th:insert="~{fragments/footer :: footer}">&copy; 2020 Vladimir Yakimov</div>
+</footer>
 </body>
 </html>
