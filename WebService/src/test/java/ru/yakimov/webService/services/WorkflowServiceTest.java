@@ -35,7 +35,6 @@ public class WorkflowServiceTest {
     @Transactional
     public void getById() {
         Workflow workflow = workflowService.getAll().get(0);
-
         assertEquals(workflow.getTitle(), workflowService.getById(workflow.getId()).getTitle());
 
     }
@@ -47,20 +46,18 @@ public class WorkflowServiceTest {
     }
 
     @Test
-    @Transactional
     public void save() throws ParseException {
         long workflowCount = workflowService.count();
 
         Workflow workflow = new Workflow();
         workflow.setTitle("My workflow");
 
-        WFType wfType = new WFType();
-        wfType.setTitle("SqoopMysqlTpDir");
-        wfType.setTypeClass("ru.yakimov.mysqlToDir.SqoopMysqlTpDir");
 
-        workflow.setType(wfTypeService.save(wfType));
+
+        workflow.setType(wfTypeService.getById(1L));
         workflow.setCreateDate(formatter.parse("2020-02-17", Locale.ENGLISH));
         workflow.setLastRunDate(formatter.parse("2020-02-17", Locale.ENGLISH));
+        workflow.setLogPath("/logPath");
 
         WFConfig wfConfig = new WFConfig();
 
@@ -110,12 +107,11 @@ public class WorkflowServiceTest {
 
         assertEquals(++workflowCount, workflowService.count());
 
-
     }
 
     @Test
     @Transactional
-    public void update() throws ParseException {
+    public void update() {
         Workflow wf = workflowService.getAll().get(0);
         long id = wf.getId();
         String[] dataArr = new String[]{
@@ -150,13 +146,11 @@ public class WorkflowServiceTest {
         Workflow workflow = new Workflow();
         workflow.setTitle("My workflow");
 
-        WFType wfType = new WFType();
-        wfType.setTitle("SqoopMysqlTpDir");
-        wfType.setTypeClass("ru.yakimov.mysqlToDir.SqoopMysqlTpDir");
+        workflow.setType(wfTypeService.getById(1L));
 
-        workflow.setType(wfTypeService.save(wfType));
         workflow.setCreateDate(formatter.parse("2020-02-17", Locale.ENGLISH));
         workflow.setLastRunDate(formatter.parse("2020-02-17", Locale.ENGLISH));
+        workflow.setLogPath("/logPath");
 
         WFConfig wfConfig = new WFConfig();
 
@@ -224,13 +218,11 @@ public class WorkflowServiceTest {
         Workflow workflow = new Workflow();
         workflow.setTitle("My workflow");
 
-        WFType wfType = new WFType();
-        wfType.setTitle("SqoopMysqlTpDir");
-        wfType.setTypeClass("ru.yakimov.mysqlToDir.SqoopMysqlTpDir");
+        workflow.setType(wfTypeService.getById(1L));
 
-        workflow.setType(wfTypeService.save(wfType));
         workflow.setCreateDate(formatter.parse("2020-02-17", Locale.ENGLISH));
         workflow.setLastRunDate(formatter.parse("2020-02-17", Locale.ENGLISH));
+        workflow.setLogPath("/logPath");
 
         WFConfig wfConfig = new WFConfig();
 

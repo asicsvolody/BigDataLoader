@@ -17,4 +17,5 @@ public interface IWorkflowService {
     void deleteById(Long id);
     void delete(Workflow workflow);
     long count();
+
 }

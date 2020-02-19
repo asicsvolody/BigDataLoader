@@ -23,20 +23,23 @@ public class Workflow implements Serializable {
     @Column(name = "VERSION")
     private int version;
 
-    @Column(name = "TITLE")
+    @Column(name = "TITLE", nullable = false)
     private String title;
 
     @OneToOne
     @JoinColumn(name ="TYPE_ID", referencedColumnName="id", nullable = false)
     private WFType type;
 
-    @Column(name = "CREATE_DATE")
+    @Column(name = "CREATE_DATE", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date createDate;
 
-    @Column(name = "LAST_RUN_DATE")
+    @Column(name = "LAST_RUN_DATE", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date lastRunDate;
+
+    @Column(name = "LOG_FILE", nullable = false)
+    private String logPath;
 
     @OneToOne(mappedBy = "workflow", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private WFConfig wfConfig;
@@ -97,4 +100,11 @@ public class Workflow implements Serializable {
         this.wfConfig = wfConfig;
     }
 
+    public String getLogPath() {
+        return logPath;
+    }
+
+    public void setLogPath(String logPath) {
+        this.logPath = logPath;
+    }
 }

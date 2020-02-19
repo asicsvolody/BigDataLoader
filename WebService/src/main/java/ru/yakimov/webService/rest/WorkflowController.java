@@ -24,7 +24,7 @@ public class WorkflowController {
     @RequestMapping
     public String list(Model uiModel){
         uiModel.addAttribute("workflowlist", workflowService.getAll());
-        return "list";
+        return "workflows";
 
     }
 }

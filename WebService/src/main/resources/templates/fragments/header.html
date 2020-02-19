@@ -12,8 +12,8 @@
 </head>
 <body>
 <div class="container">
-    <div th:fragment="header">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-static-top navbar-dark bg-primary" th:fragment="header">
+        <div class="container">
             <a class="navbar-brand" href="#" th:href="@{/}">BIG DATA LOADER</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -45,8 +45,9 @@
                     </li>
                 </ul>
             </div>
-        </nav>
-    </div>
+
+        </div>
+    </nav>
 </div>
 
 
