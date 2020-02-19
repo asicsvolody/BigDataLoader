@@ -25,11 +25,11 @@
     <div th:if="${param.error}">
         Invalid username and password.
     </div>
-    <div class="text-danger" th:if="${param.logout}">
+    <div class="text-danger mt-5" th:if="${param.logout}">
         You have been logged out.
     </div>
 
-    <form th:action="@{/login}" method="post">
+    <form class="mt-5" th:action="@{/login}" method="post">
         <div class="form-group">
             <label for="exampleInputEmail1">User Name :</label>
             <input type="text" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter username">
@@ -43,7 +43,7 @@
             <input type="checkbox" class="form-check-input" id="exampleCheck1">
             <label class="form-check-label" for="exampleCheck1">Check me out</label>
         </div>
-        <button type="submit" class="btn btn-primary">Sign In</button>
+        <button type="submit" class="btn btn-primary mt-3">Sign In</button>
     </form>
 
 </main>
