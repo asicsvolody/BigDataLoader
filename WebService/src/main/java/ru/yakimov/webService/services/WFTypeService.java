@@ -14,7 +14,6 @@ import java.util.List;
  */
 
 @Service
-@Transactional
 public class WFTypeService implements IWFTypeService{
     private WFTypeDao wfTypeDao;
 
@@ -29,7 +28,7 @@ public class WFTypeService implements IWFTypeService{
 
     @Override
     public WFType getById(long id) {
-        return wfTypeDao.getOne(id);
+        return wfTypeDao.findById(id).get();
     }
 
     @Override

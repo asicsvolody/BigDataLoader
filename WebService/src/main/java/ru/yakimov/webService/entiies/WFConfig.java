@@ -2,7 +2,9 @@ package ru.yakimov.webService.entiies;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -103,5 +105,12 @@ public class WFConfig implements Serializable {
         return this.dirFrom.add(directoryFrom);
     }
 
+    public List<DirectoryFrom> getDirFromList(){
+        return new ArrayList<>(this.dirFrom);
+    }
+
+    public List<PartitionColumn> getPartitionsColumnList(){
+        return new ArrayList<>(this.partitions);
+    }
 
 }

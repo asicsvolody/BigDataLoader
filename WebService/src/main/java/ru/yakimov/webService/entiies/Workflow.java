@@ -39,7 +39,7 @@ public class Workflow implements Serializable {
     private Date lastRunDate;
 
     @OneToMany(mappedBy = "workflow", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private Set<LogFile> logFile = new HashSet<>();
+    private Set<LogFile> logFiles = new HashSet<>();
 
     @OneToOne(mappedBy = "workflow", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private WFConfig wfConfig;
@@ -101,16 +101,16 @@ public class Workflow implements Serializable {
     }
 
 
-    public Set<LogFile> getLogFile() {
-        return logFile;
+    public Set<LogFile> getLogFiles() {
+        return logFiles;
     }
 
-    public void setLogFile(Set<LogFile> logPath) {
-        this.logFile = logPath;
+    public void setLogFiles(Set<LogFile> logPath) {
+        this.logFiles = logPath;
     }
 
     public boolean addLogFile(LogFile logFile){
-        return this.logFile.add(logFile);
+        return this.logFiles.add(logFile);
     }
 
 

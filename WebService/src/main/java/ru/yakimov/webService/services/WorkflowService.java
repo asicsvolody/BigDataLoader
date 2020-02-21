@@ -5,6 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.yakimov.webService.dao.WorkflowDao;
 import ru.yakimov.webService.entiies.Workflow;
 
+import javax.jws.WebService;
 import java.util.List;
 
 /**
@@ -14,7 +15,6 @@ import java.util.List;
  */
 
 @Service
-@Transactional
 public class WorkflowService implements IWorkflowService {
 
     private WorkflowDao workflowDao;
@@ -25,7 +25,7 @@ public class WorkflowService implements IWorkflowService {
 
     @Override
     public Workflow getById(Long id){
-        return workflowDao.getOne(id);
+        return workflowDao.findById(id).get();
     }
 
     @Override

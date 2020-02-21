@@ -20,16 +20,16 @@ import static org.junit.Assert.*;
 public class WorkflowServiceTest {
 
     @Autowired
-    private WorkflowService workflowService;
+    private IWorkflowService workflowService;
 
     @Autowired
     private DateFormatter formatter;
 
     @Autowired
-    private WFTypeService wfTypeService;
+    private IWFTypeService wfTypeService;
 
     @Autowired
-    private LogFileService logFileService;
+    private ILotFileService logFileService;
 
 
     @Test
