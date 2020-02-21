@@ -12,6 +12,7 @@ import ru.yakimov.webService.utils.DateFormatter;
 
 import java.text.ParseException;
 import java.util.Locale;
+import java.util.NoSuchElementException;
 
 import static org.junit.Assert.*;
 
@@ -33,11 +34,9 @@ public class WorkflowServiceTest {
 
 
     @Test
-    @Transactional
     public void getById() {
         Workflow workflow = workflowService.getAll().get(0);
         assertEquals(workflow.getTitle(), workflowService.getById(workflow.getId()).getTitle());
-
     }
 
     @Test
@@ -124,7 +123,6 @@ public class WorkflowServiceTest {
     }
 
     @Test
-    @Transactional
     public void update() {
         Workflow wf = workflowService.getAll().get(0);
         long id = wf.getId();
@@ -155,7 +153,6 @@ public class WorkflowServiceTest {
 
 
     @Test
-    @Transactional
     public void deleteById() throws ParseException {
         Workflow workflow = new Workflow();
         workflow.setTitle("My workflow");
@@ -221,9 +218,9 @@ public class WorkflowServiceTest {
 
         assertNotNull(wf);
 
-        workflowService.delete(savedWF);
+        workflowService.deleteById(wf.getId());
 
-        assertThrows(JpaObjectRetrievalFailureException.class,
+        assertThrows(NoSuchElementException.class,
                 ()->workflowService.getById(savedWF.getId())
         );
 
@@ -231,7 +228,6 @@ public class WorkflowServiceTest {
     }
 
     @Test
-    @Transactional
     public void delete() throws ParseException {
 
         Workflow workflow = new Workflow();
@@ -299,7 +295,7 @@ public class WorkflowServiceTest {
 
         workflowService.delete(savedWF);
 
-        assertThrows(JpaObjectRetrievalFailureException.class,
+        assertThrows(NoSuchElementException.class,
                 ()->workflowService.getById(savedWF.getId())
         );
 
