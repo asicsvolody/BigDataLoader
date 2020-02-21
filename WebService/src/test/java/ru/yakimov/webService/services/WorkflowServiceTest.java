@@ -10,8 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.yakimov.webService.entiies.*;
 import ru.yakimov.webService.utils.DateFormatter;
 
-import java.lang.reflect.Array;
-import java.lang.reflect.InvocationTargetException;
 import java.text.ParseException;
 import java.util.Locale;
 
@@ -29,6 +27,9 @@ public class WorkflowServiceTest {
 
     @Autowired
     private WFTypeService wfTypeService;
+
+    @Autowired
+    private LogFileService logFileService;
 
 
     @Test
@@ -54,10 +55,23 @@ public class WorkflowServiceTest {
 
 
 
-        workflow.setType(wfTypeService.getById(1L));
+        if (wfTypeService.count() == 0){
+            WFType wfType = new WFType();
+            wfType.setTitle("SqoopMysqlTpDir");
+            wfType.setTypeClass("ru.yakimov.mysqlToDir.SqoopMysqlTpDir");
+            wfTypeService.save(wfType);
+        }
+        workflow.setType(wfTypeService.getAll().get(0));
         workflow.setCreateDate(formatter.parse("2020-02-17", Locale.ENGLISH));
         workflow.setLastRunDate(formatter.parse("2020-02-17", Locale.ENGLISH));
-        workflow.setLogPath("/logPath");
+
+        LogFile logFile = new LogFile();
+        logFile.setFilePath("/logPath");
+        logFile.setCreateDate(formatter.parse("2020-02-17", Locale.ENGLISH));
+
+//        !!!
+        logFile.setWorkflow(workflow);
+        workflow.addLogFile(logFile);
 
         WFConfig wfConfig = new WFConfig();
 
@@ -146,12 +160,17 @@ public class WorkflowServiceTest {
         Workflow workflow = new Workflow();
         workflow.setTitle("My workflow");
 
-        workflow.setType(wfTypeService.getById(1L));
+        workflow.setType(wfTypeService.getAll().get(0));
 
         workflow.setCreateDate(formatter.parse("2020-02-17", Locale.ENGLISH));
         workflow.setLastRunDate(formatter.parse("2020-02-17", Locale.ENGLISH));
-        workflow.setLogPath("/logPath");
+        LogFile logFile = new LogFile();
+        logFile.setFilePath("/logPath");
+        logFile.setCreateDate(formatter.parse("2020-02-17", Locale.ENGLISH));
 
+//        !!!
+        logFile.setWorkflow(workflow);
+        workflow.addLogFile(logFile);
         WFConfig wfConfig = new WFConfig();
 
         DirectoryFrom directoryFrom = new DirectoryFrom();
@@ -218,12 +237,17 @@ public class WorkflowServiceTest {
         Workflow workflow = new Workflow();
         workflow.setTitle("My workflow");
 
-        workflow.setType(wfTypeService.getById(1L));
+        workflow.setType(wfTypeService.getAll().get(0));
 
         workflow.setCreateDate(formatter.parse("2020-02-17", Locale.ENGLISH));
         workflow.setLastRunDate(formatter.parse("2020-02-17", Locale.ENGLISH));
-        workflow.setLogPath("/logPath");
+        LogFile logFile = new LogFile();
+        logFile.setFilePath("/logPath");
+        logFile.setCreateDate(formatter.parse("2020-02-17", Locale.ENGLISH));
 
+//        !!!
+        logFile.setWorkflow(workflow);
+        workflow.addLogFile(logFile);
         WFConfig wfConfig = new WFConfig();
 
         DirectoryFrom directoryFrom = new DirectoryFrom();

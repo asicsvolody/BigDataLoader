@@ -1,10 +1,10 @@
 package ru.yakimov.webService.entiies;
 
-import org.springframework.transaction.annotation.Transactional;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by IntelliJ Idea.
@@ -38,8 +38,8 @@ public class Workflow implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date lastRunDate;
 
-    @Column(name = "LOG_FILE", nullable = false)
-    private String logPath;
+    @OneToMany(mappedBy = "workflow", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private Set<LogFile> logFile = new HashSet<>();
 
     @OneToOne(mappedBy = "workflow", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private WFConfig wfConfig;
@@ -100,11 +100,19 @@ public class Workflow implements Serializable {
         this.wfConfig = wfConfig;
     }
 
-    public String getLogPath() {
-        return logPath;
+
+    public Set<LogFile> getLogFile() {
+        return logFile;
     }
 
-    public void setLogPath(String logPath) {
-        this.logPath = logPath;
+    public void setLogFile(Set<LogFile> logPath) {
+        this.logFile = logPath;
     }
+
+    public boolean addLogFile(LogFile logFile){
+        return this.logFile.add(logFile);
+    }
+
+
+
 }

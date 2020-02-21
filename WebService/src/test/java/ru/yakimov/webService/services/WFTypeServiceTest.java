@@ -22,7 +22,6 @@ public class WFTypeServiceTest {
 
 
     @Test
-    @Transactional
     public void save() {
         WFType wfType = new WFType();
         wfType.setTitle("SqoopMysqlTpDir");
