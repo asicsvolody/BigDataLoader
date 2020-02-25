@@ -20,9 +20,9 @@
 <header>
     <nav th:replace="~{fragments/header :: header}">Header</nav>
 </header>
-<main role="main" class="container">
+<main role="main" class="container" th:object="${workflow}">
 
-    <h1 th:text="${workflow.title}">Workflow</h1>
+    <h1 th:text="*{title}">Workflow</h1>
 
     <div>
         <form class="form-horizontal ">
